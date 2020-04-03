@@ -11,7 +11,7 @@ class Mutations::CreateUser < Mutations::BaseMutation
       # Successful creation, return the created object with no errors
       {
         user: user,
-        errors: [],
+        errors: []
       }
     else
       # Failed save, return the errors to the client
