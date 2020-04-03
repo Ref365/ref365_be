@@ -79,6 +79,8 @@ GEM
     factory_bot_rails (5.1.1)
       factory_bot (~> 5.1.0)
       railties (>= 4.2.0)
+    faker (2.10.2)
+      i18n (>= 1.6, < 2)
     faraday (1.0.1)
       multipart-post (>= 1.2, < 3)
     ffi (1.12.2)
@@ -204,6 +206,7 @@ DEPENDENCIES
   byebug
   database_cleaner-active_record
   factory_bot_rails
+  faker
   faraday
   figaro
   listen (>= 3.0.5, < 3.2)
@@ -222,4 +225,4 @@ RUBY VERSION
    ruby 2.6.3p62
 
 BUNDLED WITH
-   2.0.2
+   2.1.4
