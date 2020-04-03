@@ -4,39 +4,31 @@ require 'rails_helper'
 module Mutations
   module Users
     RSpec.describe CreateUser, type: :request do
-      describe '.resolve' do
-        it 'creates a book' do
-          name = "Harrison"
-          email = "harrison@gmail.com"
+      describe "Creates a user and returns new user's details in JSON" do
+        it "Successfully" do
+          user_name = "Example User"
+          email = "example.user@email.com"
 
           expect do
-            post '/graphql', params: { query: query(name: name, email: email) }
+            post '/graphql', params: { query: query(user_name, email) }
           end.to change { User.count }.by(1)
-        end
 
-        it 'returns a user' do
-          name = "Harrison"
-          email = "harrison@gmail.com"
-
-          require "pry"; binding.pry
-          post '/graphql', params: { query: query(name: name, email: email) }
           json = JSON.parse(response.body)
-          data = json['data']['createBook']
+          data = json["data"]["createUser"]
 
-          expect(data).to include(
-            'id'              => be_present,
-            'title'           => "Harrison",
-            'publicationDate' => "harrison@gmail.com",
-          )
+          expect(data["user"]["id"]).to eq(User.last.id.to_s)
+          expect(data["user"]["name"]).to eq(user_name)
+          expect(data["user"]["email"]).to eq(email)
+          expect(data["errors"]).to eq([]) # empty -> no errors
         end
       end
 
-      def query(name:, email:)
+      def query(user_name, email)
         <<~GQL
           mutation {
             createUser(input: {
-              name: #{name},
-              email: #{email}"
+              name: "#{user_name}",
+              email: "#{email}"
             }) {
               user {
                 id
