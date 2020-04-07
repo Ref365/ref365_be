@@ -7,7 +7,7 @@ rake db:{create,migrate,seed}
 rails s
 ````
 
-visit http://localhost:3000/
+visit http://localhost:3000/  
 <img width="295" alt="Screen Shot 2020-04-06 at 2 41 37 PM" src="https://user-images.githubusercontent.com/53151022/78598455-f72fb780-7814-11ea-9da0-069a75b76333.png">
 
 
