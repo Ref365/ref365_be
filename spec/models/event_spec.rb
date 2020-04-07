@@ -11,6 +11,6 @@ RSpec.describe Event, type: :model do
     it { should validate_presence_of(:time) }
     it { should validate_presence_of(:income) }
     it { should validate_presence_of(:mileage) }
-    it { should validate_presence_of(:body) }
+    it { should validate_presence_of(:notes) }
   end
 end
