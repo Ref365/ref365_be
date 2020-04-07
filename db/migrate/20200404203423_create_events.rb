@@ -3,7 +3,7 @@ class CreateEvents < ActiveRecord::Migration[6.0]
     create_table :events do |t|
       t.belongs_to :user, null: false, foreign_key: true
       t.string :title
-      t.text :body
+      t.text :notes
       t.datetime :date
       t.timestamp :time
       t.float :mileage

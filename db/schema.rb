@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2020_04_04_203423) do
   create_table "events", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "title"
-    t.text "body"
+    t.text "notes"
     t.datetime "date"
     t.datetime "time"
     t.float "mileage"
