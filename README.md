@@ -80,6 +80,7 @@ To retrieve an event:
     title
     notes
     date
+    dateTime
     time
     mileage
     income
