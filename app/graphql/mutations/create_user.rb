@@ -13,12 +13,6 @@ class Mutations::CreateUser < Mutations::BaseMutation
         user: user,
         errors: []
       }
-    else
-      # Failed save, return the errors to the client
-      {
-        user: nil,
-        errors: user.errors.full_messages
-      }
     end
   end
 end

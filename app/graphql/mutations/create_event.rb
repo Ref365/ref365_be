@@ -20,12 +20,6 @@ class Mutations::CreateEvent < Mutations::BaseMutation
         event: event,
         errors: [],
       }
-    else
-      # Failed save, return the errors to the client
-      {
-        event: nil,
-        errors: event.errors.full_messages
-      }
     end
   end
 end
