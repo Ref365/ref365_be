@@ -20,6 +20,7 @@ RSpec.describe Types::QueryType do
       expect(json_response["data"]["event"]["time"]).to eq("2020-04-04 14:00:00 UTC")
       expect(json_response["data"]["event"]["mileage"]).to eq(36.1)
       expect(json_response["data"]["event"]["income"]).to eq(125.00)
+      expect(json_response["data"]["event"]["dateTime"]).to eq("2018-07-21T14:00:00+00:00")
     end
   end
 
@@ -33,6 +34,7 @@ RSpec.describe Types::QueryType do
         time
         mileage
         income
+        dateTime
       }
     }
     GQL
