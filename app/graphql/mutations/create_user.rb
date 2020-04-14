@@ -3,16 +3,10 @@ class Mutations::CreateUser < Mutations::BaseMutation
   argument :email, String, required: true
 
   field :user, Types::UserType, null: false
-  field :errors, [String], null: false
 
   def resolve(name:, email:)
-    user = User.new(name: name, email: email)
-    if user.save
-      # Successful creation, return the created object with no errors
-      {
-        user: user,
-        errors: []
-      }
-    end
+    {
+      user: User.create(name: name, email: email)
+    }
   end
 end
