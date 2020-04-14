@@ -28,7 +28,6 @@ module Mutations
           expect(data["event"]["time"]).to eq(time)
           expect(data["event"]["mileage"]).to eq(mileage)
           expect(data["event"]["income"]).to eq(income)
-          expect(data["errors"].empty?).to eq(true) 
         end
 
         it "Unsuccessfully" do
@@ -51,7 +50,6 @@ module Mutations
               event {
                 id
               }
-              errors
             }
           }
         GQL
@@ -78,7 +76,6 @@ module Mutations
               mileage
               income
             }
-            errors
             }
           }
         GQL
