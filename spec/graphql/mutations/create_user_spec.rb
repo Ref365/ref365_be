@@ -19,7 +19,6 @@ module Mutations
           expect(data["user"]["id"]).to eq(User.last.id.to_s)
           expect(data["user"]["name"]).to eq(user_name)
           expect(data["user"]["email"]).to eq(email)
-          expect(data["errors"]).to eq([]) # empty -> no errors
         end
 
         it "Unsuccessfully" do
@@ -40,7 +39,6 @@ module Mutations
                 name
                 email
               }
-              errors
             }
           }
         GQL
@@ -58,7 +56,6 @@ module Mutations
                 name
                 email
               }
-              errors
             }
           }
         GQL
