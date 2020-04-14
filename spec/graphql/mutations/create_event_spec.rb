@@ -28,8 +28,31 @@ module Mutations
           expect(data["event"]["time"]).to eq(time)
           expect(data["event"]["mileage"]).to eq(mileage)
           expect(data["event"]["income"]).to eq(income)
-          expect(data["errors"]).to eq([]) # empty -> no errors
         end
+
+        it "Unsuccessfully" do
+          post '/graphql', params: { query: bad_query }
+          data = JSON.parse(response.body)
+          expect(data["errors"].empty?).to eq(false)
+        end
+      end
+
+      def bad_query
+        <<~GQL
+          mutation {
+            createEvent(input: {
+              userId: 1,
+              title: "Example Title",
+              time: "12-25-20",
+              mileage: 5,
+              income: "Not a number"
+            }) {
+              event {
+                id
+              }
+            }
+          }
+        GQL
       end
 
       def query(user_id, title, notes, date, time, mileage, income)
@@ -53,7 +76,6 @@ module Mutations
               mileage
               income
             }
-            errors
             }
           }
         GQL

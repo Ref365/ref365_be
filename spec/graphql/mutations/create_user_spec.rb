@@ -19,8 +19,29 @@ module Mutations
           expect(data["user"]["id"]).to eq(User.last.id.to_s)
           expect(data["user"]["name"]).to eq(user_name)
           expect(data["user"]["email"]).to eq(email)
-          expect(data["errors"]).to eq([]) # empty -> no errors
         end
+
+        it "Unsuccessfully" do
+          post '/graphql', params: { query: bad_query }
+          data = JSON.parse(response.body)
+          expect(data["errors"].empty?).to eq(false)
+        end
+      end
+
+      def bad_query
+        <<~GQL
+          mutation {
+            createUser(input: {
+              name: 21,
+            }) {
+              user {
+                id
+                name
+                email
+              }
+            }
+          }
+        GQL
       end
 
       def query(user_name, email)
@@ -35,7 +56,6 @@ module Mutations
                 name
                 email
               }
-              errors
             }
           }
         GQL

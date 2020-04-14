@@ -8,24 +8,11 @@ class Mutations::CreateEvent < Mutations::BaseMutation
   argument :user_id, ID, required: true
 
   field :event, Types::EventType, null: false
-  field :errors, [String], null: false
 
   def resolve(title:, notes:, date:, time:, income:, mileage:, user_id:)
-    user = User.find(user_id)
-    event = user.events.new(title: title, notes: notes, date: date, time: time,
-                    income: income, mileage: mileage, user_id: user_id)
-    if event.save
-      # Successful creation, return the created object with no errors
-      {
-        event: event,
-        errors: [],
-      }
-    else
-      # Failed save, return the errors to the client
-      {
-        event: nil,
-        errors: event.errors.full_messages
-      }
-    end
+    {
+      event: Event.create(user_id: user_id, title: title, notes: notes, date: date, 
+                          time: time, income: income, mileage: mileage)
+    }
   end
 end
