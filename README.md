@@ -35,6 +35,7 @@ Local deployment developer interface: http://localhost:3000/graphiql
 - [Query a User](#Query-a-User)
 - [Query all Users](#Query-all-Users)
 - [Query a User's Events](#Query-a-User's-Events)
+- [Delete an Event](#Delete-an-Event)
 
 ## Database Schema
 <img src="https://user-images.githubusercontent.com/53151022/79116329-c936ff80-7d4d-11ea-9de9-a49516cc27b5.png" alt="DB Schema Screen Shot" width="400"/>
@@ -227,6 +228,26 @@ mutation {
         }
       ]
     }
+  }
+}
+````
+#### Delete an Event
+* Request
+````
+mutation {
+  deleteEvent(input: {
+    eventId: 3
+  }) {
+  status
+}}
+````
+* Response
+````
+{
+  "data": {
+      "deleteEvent": {
+          "status": "Deleted event(id: 3): Holiday Tournament, game 1"
+      }
   }
 }
 ````
